@@ -30,7 +30,7 @@ Bucklescript OCaml JSON Decoder & Encoder ported from Elm.
 
 ### Primitives
 
-**string**
+#### string
 Decode a JSON string into a string.
 
     decode_string string {| true |}        == Error ...
@@ -39,7 +39,7 @@ Decode a JSON string into a string.
     decode_string string {| "hello" |}     == Ok "hello"
     decode_string string {| "hello": 42 |} == Error ...
 
-**bool**
+#### bool
 Decode a JSON boolean into a boolean.
 
     decode_string bool {| true |}        == Ok true
@@ -48,7 +48,7 @@ Decode a JSON boolean into a boolean.
     decode_string bool {| "hello" |}     == Error ...
     decode_string bool {| "hello": 42 |} == Error ...
 
-**int**
+#### int
 Decode a JSON number into an int.
 
     decode_string int {| true |}        == Error ...
@@ -57,7 +57,7 @@ Decode a JSON number into an int.
     decode_string int {| "hello" |}     == Error ...
     decode_string int {| "hello": 42 |} == Error ...
 
-**float**
+#### float
 Decode a JSON number into a float.
 
     decode_string float {| true |}        == Error ...
@@ -68,7 +68,7 @@ Decode a JSON number into a float.
 
 ### Data Structures
 
-**nullable**
+#### nullable
 Decode a nullable JSON value into an option.
 
     decodeString (nullable int) {| 13 |}    == Ok (Some 13)
@@ -76,25 +76,25 @@ Decode a nullable JSON value into an option.
     decodeString (nullable int) {| null |}  == Ok None
     decodeString (nullable int) {| true |}  == Err ..
 
-**list**
+#### list
 Decode a JSON array into a list.
 
     decode_string (list int) {| [1,2,3] |}       == Ok [1; 2; 3]
     decode_string (list bool) {| [true,false] |} == Ok [true; false]
 
-**array**
+#### array
 Decode a JSON array into an array.
 
     decode_string (array int) {| [1,2,3] |}       == Ok [| 1; 2; 3 |]
     decode_string (array bool) {| [true,false] |} == Ok [| true; false |]
 
-**dict**
+#### dict
 Decode a JSON object into a *Dict*.
 
     decode_string (dict int) {| { "alice": 42, "bob": 99 } |} 
 	    == Ok Dict
   
-  **key_value_pairs**
+#### key_value_pairs
 Decode a JSON object into a list of pairs.
 
     decode_string (key_value_pairs int) {| { "alice": 42, "bob": 99 } |}  
@@ -102,7 +102,7 @@ Decode a JSON object into a list of pairs.
   
 ### Object Primitives
 
-**field**
+#### field
 Decode a JSON object, requiring a particular field.
 
     decode_string (field "x" int) {| { "x": 3 } |}             == Ok 3
@@ -114,7 +114,7 @@ The object  _can_  have other fields. Lots of them! The only thing this decoder 
 
 Check out `map2` & `|:`  to see how to decode multiple fields!
 
-**at**
+#### at
 Decode a nested JSON object, requiring certain fields.
 
 	let json = {| { "person": { "name": "tom", "age": 42 } } |} in
@@ -127,7 +127,7 @@ This is really just a shorthand for saying things like:
 
     field "person" (field "name" string) == at ["person","name"] string
 
-**index**
+#### index
 Decode a JSON array, requiring a particular index.
 
     let json = {| [ "alice", "bob", "chuck" ] |} in
@@ -139,7 +139,7 @@ Decode a JSON array, requiring a particular index.
 
 ### Inconsistent Structure
 
-**optional**
+#### optional
 Helpful for dealing with optional fields. Here are a few slightly different examples:
 
     let json = {| { "person": { "name": "tom", "age": 41 } } |} in
@@ -157,7 +157,7 @@ Notice the last example! It is saying we  *must*  have a field named  `height`  
 Point is,  `optional`  will make exactly what it contains conditional. For optional fields, this means you probably want it  *outside*  a use of  `field`  or  `at`.
 
 	
-**one_of**
+#### one_of
 Try a bunch of different decoders. This can be useful if the JSON may come in a couple different formats. For example, say you want to read an array of numbers, but some of them are `null`.
 
     let bad_int = one_of [ int, null 0 ] in
@@ -168,7 +168,7 @@ Try a bunch of different decoders. This can be useful if the JSON may come in a 
 	
 ### Run Decoders
 
-**decode_string**
+#### decode_string
 Parse the given string into a JSON value and then run the `decoder` on it. This will fail if the string is not well-formed JSON or if the `decoder` fails for some reason.
 
     decode_string int {| 4 |}       == Ok 4
@@ -177,14 +177,14 @@ Parse the given string into a JSON value and then run the `decoder` on it. This 
 
 ### Mapping
 
-**map**
+#### map
 Transform a decoder. Maybe you want to transform a value into an OCaml option:
 
     let to_some x = Some x in
     
     decode_string (map to_some int) {| 4 |} == Ok (Some 4)
 
-**map2**
+#### map2
 Try two decoders and then combine the result. We can use this to decode objects with many fields:
 
     let json = {| { "x": 2, "y": 5 } |} in
@@ -214,7 +214,7 @@ It tries each individual decoder and puts the result together with the `point`co
 	in
 
 
-**and_map**
+#### and_map
 In addition to use a `mapN` function, `and_map` provides a clean way to map multiple decoders to a function:
 
     let json = {| { "x": 2, "y": 5, "z": 9 } |} in
@@ -237,7 +237,7 @@ In addition to use a `mapN` function, `and_map` provides a clean way to map mult
     	
 ### Fancy Decoding
 
-**null**
+#### null
 Decode a `null` value into a value.
 
     decode_string (null false) {| null |}        == Ok false
@@ -245,19 +245,19 @@ Decode a `null` value into a value.
     decode_string (null 42) {| 42 |}             == Error ...
     decode_string (null 42) {| false |}          == Error ...    
   
-  **succeed**
+#### succeed
 Ignore the JSON and produce a certain value.
 
     decode_string (succeed 42) {| true |}    == Ok 42
     decode_string (succeed 42) {| [1,2,3] |} == Ok 42
     decode_string (succeed 42) {| hello |}   == Error ... -- this is not a valid JSON string
 
-  **fail**
+#### fail
 Ignore the JSON and make the decoder fail. This is handy when used with `one_of`or `and_then` where you want to give a custom error message in some case.
 
     decode_string (fail "my message") {| true |} == Error "my message"
 
-  **and_then**
+#### and_then
 Create decoders that depend on previous results. If you are creating versioned data, you might do something like this:
 
     let info_help version =
@@ -272,6 +272,7 @@ Create decoders that depend on previous results. If you are creating versioned d
 
 # Encode
 
+#### encode
 Encode values into a JSON string.
 
     Encode.encode 0
@@ -315,5 +316,7 @@ Jsonx is a port of the [Json.Decode](http://package.elm-lang.org/packages/elm-la
 
 ## License
 
-Copyright (c) 2018-present  Erik Lott
+Copyright (c) 2018-present  [Erik Lott](https://github.com/eriklott)
+
+Licensed under [MIT License](https://github.com/eriklott/bs-jsonx/blob/master/LICENSE)
 
