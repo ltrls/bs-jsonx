@@ -1,6 +1,13 @@
-Json Encoding & Decoding for Bucklescript. Ported from Elm.
+Bucklescript OCaml JSON Decoder & Encoder ported from Elm.
 
-# Example
+bs-jsonx is intended to be used with the Bucklescript OCaml syntax. Although this package is fully compatible with the ReasonML by nature, the additional parentheses and other syntax required by ReasonML *may* make the functions in this package awkward to use.
+
+# Getting Started
+### Install
+
+    npm i bs-jsonx
+
+### Example Usage
 
     open Jsonx.Decode
 	
@@ -318,4 +325,3 @@ Jsonx is a port of the [Json.Decode](http://package.elm-lang.org/packages/elm-la
 Copyright (c) 2018-present  [Erik Lott](https://github.com/eriklott)
 
 Licensed under [MIT License](https://github.com/eriklott/bs-jsonx/blob/master/LICENSE)
-
