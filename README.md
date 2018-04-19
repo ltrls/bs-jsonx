@@ -235,11 +235,11 @@ In addition to use a `mapN` function, `and_map` provides a clean way to map mult
 
 **\|:** is an infix shorthand for `and_map`
 
-        let decoder =
-            succeed vector
-                |: (field "x" float)
-                |: (field "y" float)
-                |: (field "z" float)                
+    let decoder =
+        succeed vector
+            |: (field "x" float)
+            |: (field "y" float)
+            |: (field "z" float)                
         
 ### Fancy Decoding
 
@@ -292,11 +292,13 @@ Encode values into a JSON string.
                     [| Encode.string "fluffy"
                     ;  Encode.string "zoomer"
                     ;  Encode.string "oscar" 
-                    |])
+                    |]
+                )
             ;  ("fav_colors", Encode.list  
                     [ Encode.string "red"
                     ; Encode.string "white" 
-                    ])
+                    ]
+                )
             ]
         )
     # => {"name":"John Doe","age":41,"height":183.4,"has_hair":true,"parent_id":null,"pets":["fluffy","zoomer","oscar"],"fav_colors":["red","white"]}
