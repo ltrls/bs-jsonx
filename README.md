@@ -1,5 +1,4 @@
-
-Bucklescript OCaml JSON Decoder & Encoder ported from Elm.
+Json Encoding & Decoding for Bucklescript. Ported from Elm.
 
 # Example
 

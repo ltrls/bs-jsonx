@@ -1,5 +1,5 @@
 {
-  "name": "bs-jsoncodec",
+  "name": "bs-jsonx",
   "version": "0.1.0",
   "scripts": {
     "clean": "bsb -clean-world",
@@ -12,6 +12,7 @@
   ],
   "author": "Erik Lott",
   "license": "MIT",
+  "homepage": "https://github.com/eriklott/bs-jsonx",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.2",
     "bs-platform": "^2.2.3"
