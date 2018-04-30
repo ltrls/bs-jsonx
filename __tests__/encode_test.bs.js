@@ -2,52 +2,52 @@
 'use strict';
 
 var Jest = require("@glennsl/bs-jest/src/jest.js");
-var Jsonx_encode = require("../src/jsonx_encode.bs.js");
+var Encode$BsJsoncodec = require("../src/encode.bs.js");
 
 describe("Encode", (function () {
         describe("#encode", (function () {
                 return Jest.test("encodes values to json string", (function () {
-                              var got = Jsonx_encode.encode(0, Jsonx_encode.object$prime(/* :: */[
+                              var got = Encode$BsJsoncodec.encode(0, Encode$BsJsoncodec.object$prime(/* :: */[
                                         /* tuple */[
                                           "name",
-                                          Jsonx_encode.string("John Doe")
+                                          Encode$BsJsoncodec.string("John Doe")
                                         ],
                                         /* :: */[
                                           /* tuple */[
                                             "age",
-                                            Jsonx_encode.$$int(41)
+                                            Encode$BsJsoncodec.$$int(41)
                                           ],
                                           /* :: */[
                                             /* tuple */[
                                               "height",
-                                              Jsonx_encode.$$float(183.4)
+                                              Encode$BsJsoncodec.$$float(183.4)
                                             ],
                                             /* :: */[
                                               /* tuple */[
                                                 "has_hair",
-                                                Jsonx_encode.bool(/* true */1)
+                                                Encode$BsJsoncodec.bool(/* true */1)
                                               ],
                                               /* :: */[
                                                 /* tuple */[
                                                   "parent_id",
-                                                  Jsonx_encode.$$null
+                                                  Encode$BsJsoncodec.$$null
                                                 ],
                                                 /* :: */[
                                                   /* tuple */[
                                                     "pets",
-                                                    Jsonx_encode.array(/* array */[
-                                                          Jsonx_encode.string("fluffy"),
-                                                          Jsonx_encode.string("zoomer"),
-                                                          Jsonx_encode.string("oscar")
+                                                    Encode$BsJsoncodec.array(/* array */[
+                                                          Encode$BsJsoncodec.string("fluffy"),
+                                                          Encode$BsJsoncodec.string("zoomer"),
+                                                          Encode$BsJsoncodec.string("oscar")
                                                         ])
                                                   ],
                                                   /* :: */[
                                                     /* tuple */[
                                                       "fav_colors",
-                                                      Jsonx_encode.list(/* :: */[
-                                                            Jsonx_encode.string("red"),
+                                                      Encode$BsJsoncodec.list(/* :: */[
+                                                            Encode$BsJsoncodec.string("red"),
                                                             /* :: */[
-                                                              Jsonx_encode.string("white"),
+                                                              Encode$BsJsoncodec.string("white"),
                                                               /* [] */0
                                                             ]
                                                           ])

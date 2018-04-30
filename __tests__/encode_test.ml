@@ -1,6 +1,5 @@
 open Jest
 open Expect
-open Jsonx
 
 let () = describe "Encode" (fun () -> 
     describe "#encode" (fun () -> 
