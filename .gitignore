@@ -24,4 +24,5 @@ lib/bs
 .vscode
 .merlin
 .bsb.lock
+*.bs.js
 node_modules/
