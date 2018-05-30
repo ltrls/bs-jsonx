@@ -9,7 +9,7 @@ bs-jsonx is intended to be used with the Bucklescript OCaml syntax. Although thi
 
 ### Example Usage
 
-    open Jsonx.Decode
+    open bsJsonx.Decode
     
     let json = {| 
         { "first_name": "john", 
