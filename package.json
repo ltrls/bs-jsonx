@@ -15,6 +15,6 @@
   "homepage": "https://github.com/eriklott/bs-jsonx",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.2",
-    "bs-platform": "^2.2.3"
+    "bs-platform": "^6.2.0"
   }
 }
